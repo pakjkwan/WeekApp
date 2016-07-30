@@ -23,11 +23,12 @@ public class MemberDAO extends SQLiteOpenHelper {
     public MemberDAO(Context context) {
         super(context, "hanbitdb", null, 1);
         this.getWritableDatabase();
+        Log.d("DAO진입여부","====OK====");
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL("create table if not exists "+TABLE_NAME+"( "
+        db.execSQL("create table if not exists "+TABLE_NAME+" ( "
                 +"id text primary key, "
                 +"pw text, "
                 +"name text, "
