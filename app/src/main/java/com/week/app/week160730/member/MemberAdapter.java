@@ -1,6 +1,7 @@
 package com.week.app.week160730.member;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,6 +64,10 @@ public class MemberAdapter extends BaseAdapter{
         }else{
             holder = (ViewHolder) v.getTag();
         }
+        Log.d("어답터에서 체크한 이름",list.get(i).getName());
+        holder.ivPhoto.setImageResource(photos[i]);
+        holder.tvName.setText(list.get(i).getName());
+        holder.tvPhone.setText(list.get(i).getPhone());
         return v;
     }
     // inner class

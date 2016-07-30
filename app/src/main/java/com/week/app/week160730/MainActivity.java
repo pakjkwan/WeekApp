@@ -7,8 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.week.app.week160730.member.AddActivity;
+import com.week.app.week160730.member.CountActivity;
+import com.week.app.week160730.member.FindActivity;
 import com.week.app.week160730.member.JoinActivity;
 import com.week.app.week160730.member.LoginActivity;
+import com.week.app.week160730.member.MemberListActivity;
+import com.week.app.week160730.member.UpdateActivity;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -50,7 +55,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.btAdd :
                 Toast.makeText(MainActivity.this,"btAdd",Toast.LENGTH_SHORT).show();
-                this.startActivity(new Intent(this,LoginActivity.class));
+                this.startActivity(new Intent(this,AddActivity.class));
                 break;
             case R.id.btLogin :
                 Toast.makeText(MainActivity.this,"btLogin",Toast.LENGTH_SHORT).show();
@@ -58,24 +63,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.btCount :
                 Toast.makeText(MainActivity.this,"btCount",Toast.LENGTH_SHORT).show();
-                this.startActivity(new Intent(this,LoginActivity.class));
+                this.startActivity(new Intent(this,CountActivity.class));
                 break;
             case R.id.btList :
                 Toast.makeText(MainActivity.this,"btList",Toast.LENGTH_SHORT).show();
-                this.startActivity(new Intent(this,LoginActivity.class));
+                this.startActivity(new Intent(this,MemberListActivity.class));
                 break;
             case R.id.btFind :
                 Toast.makeText(MainActivity.this,"btFind",Toast.LENGTH_SHORT).show();
-                this.startActivity(new Intent(this,LoginActivity.class));
+                this.startActivity(new Intent(this,FindActivity.class));
                 break;
             case R.id.btUpdate :
                 Toast.makeText(MainActivity.this,"btUpdate",Toast.LENGTH_SHORT).show();
-                this.startActivity(new Intent(this,LoginActivity.class));
+                this.startActivity(new Intent(this,UpdateActivity.class));
                 break;
-            case R.id.btDelete :
-                Toast.makeText(MainActivity.this,"btDelete",Toast.LENGTH_SHORT).show();
-                this.startActivity(new Intent(this,LoginActivity.class));
-                break;
+
         }
 
     }

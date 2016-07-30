@@ -87,20 +87,28 @@ public class MemberDAO extends SQLiteOpenHelper {
     }
     public ArrayList<MemberBean> list(){
         SQLiteDatabase db = this.getReadableDatabase();
-        String sql = "select * from member;";
+        String sql = "select "
+                +String.format("%s,%s,%s,%s,%s,%s,%s",
+                ID,PW,NAME,EMAIL,PHONE,PHOTO,ADDR
+                )
+                +" from member;";
         Cursor cursor = db.rawQuery(sql,null);
         ArrayList<MemberBean> templist = new ArrayList<MemberBean>();
-        while(cursor.moveToNext()){
-            MemberBean temp = new MemberBean();
-            temp.setId(cursor.getString(cursor.getColumnIndex(ID)));
-            temp.setPw(cursor.getString(cursor.getColumnIndex(PW)));
-            temp.setName(cursor.getString(cursor.getColumnIndex(NAME)));
-            temp.setEmail(cursor.getString(cursor.getColumnIndex(EMAIL)));
-            temp.setPhone(cursor.getString(cursor.getColumnIndex(PHONE)));
-            temp.setPhoto(cursor.getString(cursor.getColumnIndex(PHOTO)));
-            temp.setAddr(cursor.getString(cursor.getColumnIndex(ADDR)));
-            templist.add(temp);
+        if(cursor != null){
+            Log.d("DAO LIST 조회결과 : ","SUCCESS");
+            cursor.moveToFirst();
         }
+        do{
+            MemberBean temp = new MemberBean();
+            temp.setId(cursor.getString(0));
+            temp.setPw(cursor.getString(1));
+            temp.setName(cursor.getString(2));
+            temp.setEmail(cursor.getString(3));
+            temp.setPhone(cursor.getString(4));
+            temp.setPhoto(cursor.getString(5));
+            temp.setAddr(cursor.getString(6));
+            templist.add(temp);
+        }while(cursor.moveToNext());
         return templist;
     }
     public ArrayList<MemberBean> findByName(String name){
@@ -123,19 +131,23 @@ public class MemberDAO extends SQLiteOpenHelper {
     }
     public MemberBean findById(String id){
         SQLiteDatabase db = this.getReadableDatabase();
-        String sql = "select * from "+TABLE_NAME+" where "+ID+" = '"+id+"';";
+        String sql = "select "
+                +String.format("%s,%s,%s,%s,%s,%s,%s",
+                ID,PW,NAME,EMAIL,PHONE,PHOTO,ADDR)
+                +" from "
+                +TABLE_NAME
+                +" where "+ID+" = '"+id+"';";
         Cursor cursor = db.rawQuery(sql,null);
-        MemberBean temp = new MemberBean();
+        MemberBean temp = null;
         if(cursor.moveToNext()){
-            temp.setId(cursor.getString(cursor.getColumnIndex(ID)));
-            temp.setPw(cursor.getString(cursor.getColumnIndex(PW)));
-            temp.setName(cursor.getString(cursor.getColumnIndex(NAME)));
-            temp.setEmail(cursor.getString(cursor.getColumnIndex(EMAIL)));
-            temp.setPhone(cursor.getString(cursor.getColumnIndex(PHONE)));
-            temp.setPhoto(cursor.getString(cursor.getColumnIndex(PHOTO)));
-            temp.setAddr(cursor.getString(cursor.getColumnIndex(ADDR)));
-        }else{
-            temp.setId("none");
+            temp = new MemberBean();
+            temp.setId(cursor.getString(0));
+            temp.setPw(cursor.getString(1));
+            temp.setName(cursor.getString(2));
+            temp.setEmail(cursor.getString(3));
+            temp.setPhone(cursor.getString(4));
+            temp.setPhoto(cursor.getString(5));
+            temp.setAddr(cursor.getString(6));
         }
         return temp;
     }
