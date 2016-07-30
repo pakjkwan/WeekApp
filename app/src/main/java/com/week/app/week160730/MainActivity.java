@@ -35,7 +35,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btDelete = (Button) findViewById(R.id.btDelete);
         btMap = (Button) findViewById(R.id.btMap);
 
-        btJoin.setOnClickListener(this);
+       // btJoin.setOnClickListener(this);
         btAdd.setOnClickListener(this);
         btLogin.setOnClickListener(this);
         btCount.setOnClickListener(this);
