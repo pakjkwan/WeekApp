@@ -35,11 +35,11 @@ public class MemberDAO extends SQLiteOpenHelper {
                 +"phone text, "
                 +"photo text, "
                 +"addr text); ");
-        db.execSQL("insert into member(id, pw, name, email, phone, photo, addr) values ('hong1', '1', '홍길동1', 'hong1@gmail.com','010-1234-5678','--','서울1' );");
-        db.execSQL("insert into member(id, pw, name, email, phone, photo, addr) values ('hong2', '1', '홍길동2', 'hong2@gmail.com','010-1234-5678','--','서울2' );");
-        db.execSQL("insert into member(id, pw, name, email, phone, photo, addr) values ('hong3', '1', '홍길동3', 'hong3@gmail.com','010-1234-5678','--','서울3' );");
-        db.execSQL("insert into member(id, pw, name, email, phone, photo, addr) values ('hong4', '1', '홍길동4', 'hong4@gmail.com','010-1234-5678','--','서울4' );");
-        db.execSQL("insert into member(id, pw, name, email, phone, photo, addr) values ('hong5', '1', '홍길동5', 'hong5@gmail.com','010-1234-5678','--','서울5' );");
+        db.execSQL("insert into member(id, pw, name, email, phone, photo, addr) values ('hong1', '1', '홍일동', 'hong1@gmail.com','010-1234-5678','--','서울1' );");
+        db.execSQL("insert into member(id, pw, name, email, phone, photo, addr) values ('hong2', '1', '홍이동', 'hong2@gmail.com','010-1234-5678','--','서울2' );");
+        db.execSQL("insert into member(id, pw, name, email, phone, photo, addr) values ('hong3', '1', '홍삼동', 'hong3@gmail.com','010-1234-5678','--','서울3' );");
+        db.execSQL("insert into member(id, pw, name, email, phone, photo, addr) values ('hong4', '1', '홍사동', 'hong4@gmail.com','010-1234-5678','--','서울4' );");
+        db.execSQL("insert into member(id, pw, name, email, phone, photo, addr) values ('hong5', '1', '홍오동', 'hong5@gmail.com','010-1234-5678','--','서울5' );");
     }
 
     @Override
