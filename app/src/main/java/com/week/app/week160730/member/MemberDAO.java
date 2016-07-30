@@ -21,10 +21,12 @@ public class MemberDAO extends SQLiteOpenHelper {
     public static final String ADDR="addr";
     public static final String TABLE_NAME="member";
     public MemberDAO(Context context) {
+
         super(context, "hanbitdb", null, 1);
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
+        this.getWritableDatabase();
         db.execSQL("create table if not exists "+TABLE_NAME+"( "
                 +"id text primary key, "
                 +"pw text, "
@@ -33,6 +35,11 @@ public class MemberDAO extends SQLiteOpenHelper {
                 +"phone text, "
                 +"photo text, "
                 +"addr text); ");
+        db.execSQL("insert into member(id, pw, name, email, phone, photo, addr) values ('hong1', '1', '홍길동1', 'hong1@gmail.com','010-1234-5678','--','서울1' );");
+        db.execSQL("insert into member(id, pw, name, email, phone, photo, addr) values ('hong2', '1', '홍길동2', 'hong2@gmail.com','010-1234-5678','--','서울2' );");
+        db.execSQL("insert into member(id, pw, name, email, phone, photo, addr) values ('hong3', '1', '홍길동3', 'hong3@gmail.com','010-1234-5678','--','서울3' );");
+        db.execSQL("insert into member(id, pw, name, email, phone, photo, addr) values ('hong4', '1', '홍길동4', 'hong4@gmail.com','010-1234-5678','--','서울4' );");
+        db.execSQL("insert into member(id, pw, name, email, phone, photo, addr) values ('hong5', '1', '홍길동5', 'hong5@gmail.com','010-1234-5678','--','서울5' );");
     }
 
     @Override
