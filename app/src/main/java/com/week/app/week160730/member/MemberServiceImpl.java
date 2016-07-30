@@ -10,8 +10,13 @@ import java.util.ArrayList;
  */
 public class MemberServiceImpl implements MemberService {
     MemberDAO dao;
+    GuestDAO gDao;
+    MemberBean session;
     public MemberServiceImpl(Context context) {
+
         dao = new MemberDAO(context);
+        gDao = new GuestDAO(context);
+        session = new MemberBean();
     }
 
     @Override
@@ -30,7 +35,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void add(MemberBean bean) {
-        dao.insert(bean);
+
+        gDao.add(bean);
     }
 
     @Override
@@ -40,13 +46,13 @@ public class MemberServiceImpl implements MemberService {
         String pw = bean.getPw();
         Log.d("서비스로 넘어온 ID : ",id);
         Log.d("서비스로 넘어온 PW : ",pw);
-        MemberBean member = dao.login(bean);
-        if(member.getId().equals("fail")){
+        session = dao.login(bean);
+        if(session.getId().equals("fail")){
             loginOK = false;
         }else{
             loginOK = true;
         }
-        Log.d("DAO에서 반환한 ID",member.getId());
+        Log.d("DAO에서 반환한 ID",session.getId());
         return loginOK;
     }
 
@@ -84,4 +90,7 @@ public class MemberServiceImpl implements MemberService {
     public void delete(String id) {
         dao.delete(id);
     }
+
+
+
 }

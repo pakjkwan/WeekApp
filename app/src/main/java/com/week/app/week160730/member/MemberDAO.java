@@ -36,6 +36,8 @@ public class MemberDAO extends SQLiteOpenHelper {
                 +"phone text, "
                 +"photo text, "
                 +"addr text); ");
+        db.execSQL("create table guest( _id integer primary key autoincrement," +
+                "name text, phone text );");
         db.execSQL("insert into member(id, pw, name, email, phone, photo, addr) values ('hong1', '1', '홍일동', 'hong1@gmail.com','010-1234-5678','--','서울1' );");
         db.execSQL("insert into member(id, pw, name, email, phone, photo, addr) values ('hong2', '1', '홍이동', 'hong2@gmail.com','010-1234-5678','--','서울2' );");
         db.execSQL("insert into member(id, pw, name, email, phone, photo, addr) values ('hong3', '1', '홍삼동', 'hong3@gmail.com','010-1234-5678','--','서울3' );");
@@ -46,6 +48,7 @@ public class MemberDAO extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table if exists "+TABLE_NAME);
+        db.execSQL("drop table if exists guest;");
         this.onCreate(db);
     }
     public void insert(MemberBean bean){
@@ -113,18 +116,22 @@ public class MemberDAO extends SQLiteOpenHelper {
     }
     public ArrayList<MemberBean> findByName(String name){
         SQLiteDatabase db = this.getReadableDatabase();
-        String sql = "select * from "+TABLE_NAME+" where "+NAME+" = '"+name+"';";
+        String sql = "select "
+                +String.format("%s,%s,%s,%s,%s,%s,%s",
+                ID,PW,NAME,EMAIL,PHONE,PHOTO,ADDR)
+
+                +" from "+TABLE_NAME+" where "+NAME+" = '"+name+"';";
         Cursor cursor = db.rawQuery(sql,null);
         ArrayList<MemberBean> templist = new ArrayList<MemberBean>();
         while(cursor.moveToNext()){
             MemberBean temp = new MemberBean();
-            temp.setId(cursor.getString(cursor.getColumnIndex(ID)));
-            temp.setPw(cursor.getString(cursor.getColumnIndex(PW)));
-            temp.setName(cursor.getString(cursor.getColumnIndex(NAME)));
-            temp.setEmail(cursor.getString(cursor.getColumnIndex(EMAIL)));
-            temp.setPhone(cursor.getString(cursor.getColumnIndex(PHONE)));
-            temp.setPhoto(cursor.getString(cursor.getColumnIndex(PHOTO)));
-            temp.setAddr(cursor.getString(cursor.getColumnIndex(ADDR)));
+            temp.setId(cursor.getString(0));
+            temp.setPw(cursor.getString(1));
+            temp.setName(cursor.getString(2));
+            temp.setEmail(cursor.getString(3));
+            temp.setPhone(cursor.getString(4));
+            temp.setPhoto(cursor.getString(5));
+            temp.setAddr(cursor.getString(6));
             templist.add(temp);
         }
         return templist;

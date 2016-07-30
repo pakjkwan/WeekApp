@@ -15,11 +15,10 @@ import com.week.app.week160730.R;
 
 import java.util.ArrayList;
 
-public class MemberListActivity extends Activity {
-
+public class GuestListActivity extends Activity {
     ListView lv_memberlist;
     MemberService service;
-    final String[] arr = new String[1];
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +34,9 @@ public class MemberListActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View v, int i, long l) {
                 Object o = lv_memberlist.getItemAtPosition(i);
                 MemberBean member = (MemberBean) o;
-                Toast.makeText(MemberListActivity.this,"선택한 이름"+member.getName(),
+                Toast.makeText(GuestListActivity.this,"선택한 이름"+member.getName(),
                         Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MemberListActivity.this,
+                Intent intent = new Intent(GuestListActivity.this,
                         DetailActivity.class);
 
                 intent.putExtra("id",member.getId());
@@ -47,19 +46,14 @@ public class MemberListActivity extends Activity {
         });
         lv_memberlist.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long id) {
-                Object o = lv_memberlist.getItemAtPosition(i);
-                MemberBean member = (MemberBean) o;
-                arr[0] = member.getId();
-                new AlertDialog.Builder(MemberListActivity.this)
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                new AlertDialog.Builder(GuestListActivity.this)
                         .setTitle("삭제 OK ?")
                         .setMessage("정말로 삭제하시겠습니까?")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                            // 삭제코드
-                            service.delete(arr[0]);
-
+                                // 삭제코드
 
                             }
                         })

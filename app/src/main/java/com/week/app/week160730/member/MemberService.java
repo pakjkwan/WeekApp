@@ -19,4 +19,5 @@ public interface MemberService {
     public void update(MemberBean bean);
     /*delete : DB정보를 삭제*/
     public void delete(String id);
+
 }
