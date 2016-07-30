@@ -21,12 +21,12 @@ public class MemberDAO extends SQLiteOpenHelper {
     public static final String ADDR="addr";
     public static final String TABLE_NAME="member";
     public MemberDAO(Context context) {
-
         super(context, "hanbitdb", null, 1);
+        this.getWritableDatabase();
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        this.getWritableDatabase();
+
         db.execSQL("create table if not exists "+TABLE_NAME+"( "
                 +"id text primary key, "
                 +"pw text, "
